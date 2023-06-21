@@ -13,7 +13,6 @@ import com.satyamthakur.quotify.R
 import com.satyamthakur.quotify.databinding.QuoteItemBinding
 import com.satyamthakur.quotify.models.QuotesResponseItem
 
-
 class QuotesPagerAdapter(
     var context: Context,
     var quotesList: List<QuotesResponseItem>
@@ -44,6 +43,26 @@ class QuotesPagerAdapter(
 //        }
 
         binding.tvContent.text = quotesList[position].content
+        binding.tvAuthor.text = quotesList[position].author
+        if (position == 0) {
+            binding.quoteCslParent.setBackgroundColor(Color.parseColor("#1976D2"))
+        } else
+            binding.quoteCslParent.setBackgroundColor(Color.parseColor(colorList.random()))
+    }
+
+    companion object ColorsBack {
+        val colorList = listOf<String>(
+            "#2a9d8f",
+            "#003049",
+            "#03045e",
+            "#22577a",
+            "#e36414",
+            "#6f1d1b",
+            "#9e0059",
+            "#31572c",
+            "#3c096c",
+            "#006400"
+        )
     }
 
 }

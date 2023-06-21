@@ -11,7 +11,7 @@ class VerticalStackTransformer(private val offscreenPageLimit: Int) : ViewPager2
 
         private const val DEFAULT_TRANSLATION_Y = .0f
 
-        private const val SCALE_FACTOR = .12f
+        private const val SCALE_FACTOR = .1f
         private const val DEFAULT_SCALE = 1f
 
         private const val ALPHA_FACTOR = .5f
@@ -36,7 +36,7 @@ class VerticalStackTransformer(private val offscreenPageLimit: Int) : ViewPager2
                 position <= offscreenPageLimit - 1 -> {
                     scaleX = scaleFactor
                     scaleY = DEFAULT_SCALE
-                    translationY = (-height * position + 10.dpToPx * position)
+                    translationY = (-height * position + 0.dpToPx * position)
                     alpha = alphaFactor
                 }
                 else -> {
