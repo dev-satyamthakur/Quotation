@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("quoteslog", response.body()!![0].content)
             }
             else {
-                Log.d("quotelog", "Request not successfull")
+                Log.d("quotelog", "Request not successful")
             }
         }
 
