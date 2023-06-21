@@ -7,7 +7,7 @@ object RetrofitInstance {
 
     val api: QuoteApi by lazy {
         Retrofit.Builder()
-            .baseUrl("https://api.quotable.io/quotes/random")
+            .baseUrl("https://api.quotable.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(QuoteApi::class.java)
