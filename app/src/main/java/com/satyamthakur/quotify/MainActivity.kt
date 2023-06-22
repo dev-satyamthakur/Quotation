@@ -8,7 +8,6 @@ import android.view.View
 import android.view.WindowManager
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.satyamthakur.quotify.databinding.ActivityMainBinding
 import com.satyamthakur.quotify.models.QuotesResponseItem
 import com.satyamthakur.quotify.networking.RetrofitInstance
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         binder.viewPager.apply {
             adapter = qAdapter
             offscreenPageLimit = 3
-            setPageTransformer(VerticalStackTransformer(3))
+            setPageTransformer(VerticalStackTransformer(0))
         }
 
         lifecycleScope.launch {
