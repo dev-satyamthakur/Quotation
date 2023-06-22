@@ -53,7 +53,10 @@ class QuotesPagerAdapter(
         binding.tvAuthor.text = quotesList[position].author
         if (position == 0) {
             binding.quoteCslParent.setBackgroundColor(Color.parseColor("#1976D2"))
-        } else
+        }
+        else if (position == quotesList.size - 2 || position == quotesList.size - 12)
+            binding.quoteCslParent.setBackgroundColor(Color.parseColor("#1976D2"))
+        else
             binding.quoteCslParent.setBackgroundColor(Color.parseColor(colorList.random()))
     }
 

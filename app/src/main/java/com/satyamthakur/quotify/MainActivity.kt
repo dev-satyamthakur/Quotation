@@ -9,6 +9,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
 import com.satyamthakur.quotify.databinding.ActivityMainBinding
 import com.satyamthakur.quotify.models.QuotesResponseItem
 import com.satyamthakur.quotify.networking.RetrofitInstance
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
     private lateinit var binder: ActivityMainBinding
     private lateinit var qAdapter: QuotesPagerAdapter
+    val mylist = mutableListOf<QuotesResponseItem>()
+    var currPage = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +41,63 @@ class MainActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
 
-        val mylist = mutableListOf<QuotesResponseItem>()
-
         qAdapter = QuotesPagerAdapter(this@MainActivity, mylist)
         binder.shimmerContainer.startShimmer()
+
+        setupViewPager()
+
+        getQuotesNow()
+
+    }
+
+    private fun getQuotesNow() {
+        lifecycleScope.launch {
+            val response = try {
+                RetrofitInstance.api.getQuotes(10, ++currPage)
+            } catch (e: Exception) {
+                Log.d("quoteslog", e.toString())
+                return@launch
+            }
+
+            if (response.isSuccessful && response.body() != null) {
+                Log.d("quoteslog", response.body().toString())
+                delay(500)
+                mylist.addAll(response.body()!!)
+                qAdapter.notifyDataSetChanged()
+                if (binder.shimmerContainer.isShimmerStarted) {
+                    binder.shimmerContainer.stopShimmer()
+                    binder.shimmerContainer.isVisible = false
+                }
+            }
+            else {
+                Log.d("quotelog", "Request not successful")
+                return@launch
+            }
+        }
+    }
+
+    private fun getMoreQuotes() {
+        lifecycleScope.launch {
+            val response = try {
+                RetrofitInstance.api.getQuotes(10, ++currPage)
+            } catch (e: Exception) {
+                Log.d("quoteslog", e.toString())
+                return@launch
+            }
+
+            if (response.isSuccessful && response.body() != null) {
+                Log.d("quoteslog", response.body().toString())
+                mylist.addAll(response.body()!!)
+                qAdapter.notifyDataSetChanged()
+            }
+            else {
+                Log.d("quotelog", "Request not successful")
+                return@launch
+            }
+        }
+    }
+
+    private fun setupViewPager() {
 
         binder.viewPager.apply {
             adapter = qAdapter
@@ -49,27 +105,25 @@ class MainActivity : AppCompatActivity() {
             setPageTransformer(VerticalStackTransformer(0))
         }
 
-        lifecycleScope.launch {
-            val response = try {
-                RetrofitInstance.api.getQuotes(50, 1)
-            } catch (e: Exception) {
-                Log.d("quoteslog", e.toString())
-                return@launch
+        binder.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if (position == mylist.size - 2) {
+                    getMoreQuotes()
+                }
+
             }
 
-            if (response.isSuccessful && response.body() != null) {
-                Log.d("quoteslog", response.body()!![0].content)
-                delay(500)
-                mylist.addAll(response.body()!!)
-                qAdapter.notifyDataSetChanged()
-                binder.shimmerContainer.stopShimmer()
-                binder.shimmerContainer.isVisible = false
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
             }
-            else {
-                Log.d("quotelog", "Request not successful")
-                return@launch
+
+            override fun onPageScrolled(position: Int,
+                                        positionOffset: Float,
+                                        positionOffsetPixels: Int) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
             }
-        }
+        })
 
     }
 
