@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.satyamthakur.quotify.databinding.ActivityMainBinding
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 Log.d("quotelog", "Request not successful")
+                return@launch
             }
         }
 
