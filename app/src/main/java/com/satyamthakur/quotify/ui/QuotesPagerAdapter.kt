@@ -3,11 +3,13 @@ package com.satyamthakur.quotify.ui
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.satyamthakur.quotify.R
 import com.satyamthakur.quotify.databinding.QuoteItemBinding
@@ -32,16 +34,20 @@ class QuotesPagerAdapter(
     override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
         val binding = QuoteItemBinding.bind(holder.itemView)
 
-        val clipboardManager = holder.itemView.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-
         binding.quoteCslParent.setOnLongClickListener {
-            val clipData = ClipData.newPlainText("text",
-            quotesList[position].content + "\n\n~ " + quotesList[position].author)
-            clipboardManager.setPrimaryClip(clipData)
-            Toast.makeText(holder.itemView.context, "Text copied to clipboard", Toast.LENGTH_LONG).show()
+
+            val textToShare = "" + quotesList[position].content + "\n\n~" + quotesList[position].author
+
+            // Share quotes to other apps
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare)
+            holder.itemView.context.startActivity(Intent.createChooser(shareIntent, "Share via"))
 
             true
         }
+
+
 
         binding.tvContent.text = quotesList[position].content
         binding.tvAuthor.text = quotesList[position].author
