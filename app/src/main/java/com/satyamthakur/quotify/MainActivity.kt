@@ -20,13 +20,15 @@ import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private var binding: ActivityMainBinding? = null
+    private lateinit var binder: ActivityMainBinding
     private lateinit var qAdapter: QuotesPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binder = binding!!
+        setContentView(binder.root)
 
         // making status bar transparent
         this@MainActivity.window.apply {
@@ -39,9 +41,9 @@ class MainActivity : AppCompatActivity() {
         val mylist = mutableListOf<QuotesResponseItem>()
 
         qAdapter = QuotesPagerAdapter(this@MainActivity, mylist)
-        binding.shimmerContainer.startShimmer()
+        binder.shimmerContainer.startShimmer()
 
-        binding.viewPager.apply {
+        binder.viewPager.apply {
             adapter = qAdapter
             offscreenPageLimit = 3
             setPageTransformer(VerticalStackTransformer(3))
@@ -57,17 +59,22 @@ class MainActivity : AppCompatActivity() {
 
             if (response.isSuccessful && response.body() != null) {
                 Log.d("quoteslog", response.body()!![0].content)
-                delay(1500)
+                delay(500)
                 mylist.addAll(response.body()!!)
                 qAdapter.notifyDataSetChanged()
-                binding.shimmerContainer.stopShimmer()
-                binding.shimmerContainer.isVisible = false
+                binder.shimmerContainer.stopShimmer()
+                binder.shimmerContainer.isVisible = false
             }
             else {
                 Log.d("quotelog", "Request not successful")
             }
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 
 }
