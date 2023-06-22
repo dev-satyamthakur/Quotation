@@ -42,7 +42,7 @@ class QuotesPagerAdapter(
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
             shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare)
-            holder.itemView.context.startActivity(Intent.createChooser(shareIntent, "Share via"))
+            context.startActivity(Intent.createChooser(shareIntent, "Share via"))
 
             true
         }
