@@ -6,17 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1976D2"
-    android:padding="16dp">
+    android:padding="40dp">
 
     <ImageView
         android:id="@+id/quote_icon"
         android:layout_width="130dp"
         android:layout_height="130dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.84000003"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/quote_icon" />
 
     <TextView
@@ -25,10 +26,12 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/lora_bold"
         android:gravity="center"
-        android:text="This is a sample text"
+        android:maxLines="8"
+        android:text="@string/quote_text_sample"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -40,6 +43,7 @@
         android:id="@+id/tv_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/raleway_light_italic"
         android:gravity="center"
         android:text="This is a sample text"
@@ -51,5 +55,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_content"
-        app:layout_constraintVertical_bias="0.16000003" />
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

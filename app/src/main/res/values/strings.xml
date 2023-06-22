@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Quotify</string>
+    <string name="quote_text_sample">It is a long established fact that a reader will be distracted by the
+        readable content of a page when looking at its layout. </string>
 </resources>
