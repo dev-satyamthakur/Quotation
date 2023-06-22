@@ -32,15 +32,16 @@ class QuotesPagerAdapter(
     override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
         val binding = QuoteItemBinding.bind(holder.itemView)
 
-//        val clipboardManager = holder.itemView.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipboardManager = holder.itemView.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
-//        binding.itemParentCsl.setOnLongClickListener {
-//            val clipData = ClipData.newPlainText("text", imageModelList[position].quote)
-//            clipboardManager.setPrimaryClip(clipData)
-//            Toast.makeText(holder.itemView.context, "Text copied to clipboard", Toast.LENGTH_LONG).show()
-//
-//            true
-//        }
+        binding.quoteCslParent.setOnLongClickListener {
+            val clipData = ClipData.newPlainText("text",
+            quotesList[position].content + "\n\n~ " + quotesList[position].author)
+            clipboardManager.setPrimaryClip(clipData)
+            Toast.makeText(holder.itemView.context, "Text copied to clipboard", Toast.LENGTH_LONG).show()
+
+            true
+        }
 
         binding.tvContent.text = quotesList[position].content
         binding.tvAuthor.text = quotesList[position].author
