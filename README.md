@@ -5,7 +5,7 @@ Discover Inspiration through Minimalistic Quotes
 Experience daily inspiration with Quotation. Immerse yourself in a sleek and user-friendly app, featuring carefully curated minimalistic quotes.
 
 <a href="">
-  <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="google play badge" href="" width="180">
+  <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="google play badge" href="https://play.google.com/store/apps/details?id=com.satyamthakur.quotify" width="180">
 </a>
 
 
