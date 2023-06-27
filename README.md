@@ -11,7 +11,8 @@ Experience daily inspiration with Quotation. Immerse yourself in a sleek and use
 
 ## Screenshots
 
-![Quotation_Feature_Graphic](https://github.com/dev-satyamthakur/Quotify/assets/66131727/596e9961-3c69-49fe-9b3e-f8547b37e410)
+![Quotation_Feature_Graphic](https://github.com/dev-satyamthakur/Quotation/assets/66131727/941562bb-038e-4723-b262-2d4e7ac55a99)
+
 
 
 ## Features
