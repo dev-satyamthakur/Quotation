@@ -1,8 +1,8 @@
-# Quotable
+# Quotation
 
 Discover Inspiration through Minimalistic Quotes
 
-Experience daily inspiration with Quotable. Immerse yourself in a sleek and user-friendly app, featuring carefully curated minimalistic quotes.
+Experience daily inspiration with Quotation. Immerse yourself in a sleek and user-friendly app, featuring carefully curated minimalistic quotes.
 
 <a href="">
   <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="google play badge" href="" width="180">
@@ -11,7 +11,7 @@ Experience daily inspiration with Quotable. Immerse yourself in a sleek and user
 
 ## Screenshots
 
-![Quotify_Feature_Graphic](https://github.com/dev-satyamthakur/Quotify/assets/66131727/596e9961-3c69-49fe-9b3e-f8547b37e410)
+![Quotation_Feature_Graphic](https://github.com/dev-satyamthakur/Quotify/assets/66131727/596e9961-3c69-49fe-9b3e-f8547b37e410)
 
 
 ## Features
@@ -20,7 +20,7 @@ Experience daily inspiration with Quotable. Immerse yourself in a sleek and user
 - Swipe Navigation: Effortlessly glide through insightful quotes with a simple swipe.
 - Easy Sharing: Share favorite quotes effortlessly with friends and on social media.
 - Minimalistic Design: Clean interface for a visually pleasing reading experience.
-- Download Quotable now for profound quotes that inspire and encourage personal growth.
+- Download Quotation now for profound quotes that inspire and encourage personal growth.
 
 ## License
 
