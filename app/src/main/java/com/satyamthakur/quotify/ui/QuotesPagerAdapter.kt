@@ -13,11 +13,12 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.satyamthakur.quotify.R
 import com.satyamthakur.quotify.databinding.QuoteItemBinding
+import com.satyamthakur.quotify.models.QuoteResponseItem
 import com.satyamthakur.quotify.models.QuotesResponseItem
 
 class QuotesPagerAdapter(
     var context: Context,
-    var quotesList: List<QuotesResponseItem>
+    var quotesList: List<QuoteResponseItem>
 ): RecyclerView.Adapter<QuotesPagerAdapter.QuoteViewHolder>() {
 
     inner class QuoteViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -36,7 +37,7 @@ class QuotesPagerAdapter(
 
         binding.quoteCslParent.setOnLongClickListener {
 
-            val textToShare = "" + quotesList[position].content + "\n\n~" + quotesList[position].author
+            val textToShare = "" + quotesList[position].q + "\n\n~" + quotesList[position].a
 
             // Share quotes to other apps
             val shareIntent = Intent(Intent.ACTION_SEND)
@@ -48,8 +49,8 @@ class QuotesPagerAdapter(
         }
 
 
-        binding.tvContent.text = quotesList[position].content
-        binding.tvAuthor.text = quotesList[position].author
+        binding.tvContent.text = quotesList[position].q
+        binding.tvAuthor.text = quotesList[position].a
         
 
         if (position == 0) {

@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.satyamthakur.quotify.databinding.ActivityMainBinding
+import com.satyamthakur.quotify.models.QuoteResponseItem
 import com.satyamthakur.quotify.models.QuotesResponseItem
 import com.satyamthakur.quotify.networking.RetrofitInstance
 import com.satyamthakur.quotify.ui.QuotesPagerAdapter
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
     private lateinit var binder: ActivityMainBinding
     private lateinit var qAdapter: QuotesPagerAdapter
-    val mylist = mutableListOf<QuotesResponseItem>()
+    val mylist = mutableListOf<QuoteResponseItem>()
     var currPage = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     private fun getQuotesNow() {
         lifecycleScope.launch {
             val response = try {
-                RetrofitInstance.api.getQuotes(10, ++currPage)
+                RetrofitInstance.api.getQuotes()
             } catch (e: Exception) {
                 Log.d("quoteslog", e.toString())
                 return@launch
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity() {
     private fun getMoreQuotes() {
         lifecycleScope.launch {
             val response = try {
-                RetrofitInstance.api.getQuotes(10, ++currPage)
+                RetrofitInstance.api.getQuotes()
             } catch (e: Exception) {
                 Log.d("quoteslog", e.toString())
                 return@launch
