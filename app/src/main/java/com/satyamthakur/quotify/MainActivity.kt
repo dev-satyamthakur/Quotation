@@ -16,6 +16,7 @@ import com.satyamthakur.quotify.models.QuotesResponseItem
 import com.satyamthakur.quotify.networking.RetrofitInstance
 import com.satyamthakur.quotify.ui.QuotesPagerAdapter
 import com.satyamthakur.quotify.ui.VerticalStackTransformer
+import com.satyamthakur.quotify.utils.NetworkConnectionUtil
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binder: ActivityMainBinding
     private lateinit var qAdapter: QuotesPagerAdapter
     val mylist = mutableListOf<QuoteResponseItem>()
-    var currPage = 0
+//    var currPage = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +48,12 @@ class MainActivity : AppCompatActivity() {
 
         setupViewPager()
 
-        getQuotesNow()
+        if (NetworkConnectionUtil.isNetworkAvailable(this@MainActivity)) {
+            getQuotesNow()
+        }
+        else {
+            Toast.makeText(this@MainActivity, "No Internet Connection", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
