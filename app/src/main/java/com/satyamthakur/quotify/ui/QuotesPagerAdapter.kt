@@ -64,13 +64,11 @@ class QuotesPagerAdapter(
 
     companion object ColorsBack {
         val colorList = listOf<String>(
-            "#16A085",
-            "#27AE60",
-            "#2980B9",
-            "#8E44AD",
-            "#F39C12",
-            "#D35400",
-            "#C0392B"
+            "#606c38",
+            "#2a9d8f",
+            "#780000",
+            "#0077b6",
+            "#5a189a"
         )
     }
 
